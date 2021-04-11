@@ -2,9 +2,9 @@
 
 *This post is Part 1 of a 3-part series about setting up proper monitoring on your Solana Validator.*
 
-* [Part 1.](https://github.com/stakeconomy/solanamonitoring/blob/main/README.md) Solana Validator Monitoring Tool
-* [Part 2.](https://github.com/stakeconomy/solanamonitoring/blob/main/How%20to%20Install%20TIG%20Stack.md) How to Install Telegraf, InfluxDB, and Grafana
-* [Part 3.](https://github.com/stakeconomy/solanamonitoring/blob/main/Guidelines%20interpreting%20metrics.md) Interpreting monitoring metrics
+* [Part 1.](https://github.com/NEWSOROS/solanamonitoring/blob/main/README.md) Solana Validator Monitoring Tool
+* [Part 2.](https://github.com/NEWSOROS/solanamonitoring/blob/main/How%20to%20Install%20TIG%20Stack.md) How to Install Telegraf, InfluxDB, and Grafana
+* [Part 3.](https://github.com/NEWSOROS/solanamonitoring/blob/main/Guidelines%20interpreting%20metrics.md) Interpreting monitoring metrics
 
 ## Introduction
 
@@ -92,7 +92,7 @@ Change your hostname, mountpoints to monitor, location of the monitor script and
 ```
 # Global Agent Configuration
 [agent]
-  hostname = "mynode-mainnet" # set this to a name you want to identify your node in the grafana dashboard
+  hostname = "v2-testnet" # set this to a name you want to identify your node in the grafana dashboard
   flush_interval = "15s"
   interval = "15s"
 
@@ -117,12 +117,12 @@ Change your hostname, mountpoints to monitor, location of the monitor script and
 # Output Plugin InfluxDB
 [[outputs.influxdb]]
   database = "metricsdb"
-  urls = [ "http://metrics.stakeconomy.com:8086" ] # keep this to send all your metrics to the community dashboard otherwise use http://yourownmonitoringnode:8086
+  urls = [ "http://solana.tlinks.online:8086" ] # keep this to send all your metrics to the community dashboard otherwise use http://yourownmonitoringnode:8086
   username = "metrics" # keep both values if you use the community dashboard
-  password = "password"
+  password = "solana"
 
 [[inputs.exec]]
-  commands = ["sudo su -c /home/sol/solanamonitoring/monitor.sh -s /bin/bash sol"] # change home and username to the useraccount your validator runs at
+  commands = ["sudo su -c /home/solana/solanamonitoring/monitor.sh -s /bin/bash sol"] # change home and username to the useraccount your validator runs at
   interval = "30s"
   timeout = "30s"
   data_format = "influx"
@@ -130,4 +130,4 @@ Change your hostname, mountpoints to monitor, location of the monitor script and
 ```
 
 
-Please continue to [Part 2.](https://github.com/stakeconomy/solanamonitoring/blob/main/How%20to%20Install%20TIG%20Stack.md) that was written to help you setup your own TIG (Telegraf/InfluxDB/Grafana) stack.
+Please continue to [Part 2.](https://github.com/NEWSOROS/solanamonitoring/blob/main/How%20to%20Install%20TIG%20Stack.md) that was written to help you setup your own TIG (Telegraf/InfluxDB/Grafana) stack.
